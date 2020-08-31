@@ -44,7 +44,6 @@ copy:
 	ssh -i ssh/id_rsa ubuntu@$$(terraform output -json | jq '.sandbox_ip.value' | xargs) chmod 400 /home/ubuntu/id_rsa
 
 connect:
-	ls 
 	ssh -i id_rsa ubuntu@$$(terraform output -json | jq '.sandbox_ip.value' | xargs)
 
 init:
