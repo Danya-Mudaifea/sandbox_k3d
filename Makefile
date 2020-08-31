@@ -49,5 +49,5 @@ connect:
 init:
 	rm -rf .terraform ssh
 	mkdir ssh
-	time terraform init -backend-config="bucket=devops-bootcamp-remote-state-deltasandbox" -backend-config="key=deltasandbox/labs/terraform.tfstate" -backend-config="dynamodb_table=devops-bootcamp-locks-deltasandbox"
+	time terraform init -backend-config="bucket=devops-bootcamp-remote-state-bashayr" -backend-config="key=bashayr/delta/terraform.tfstate" -backend-config="dynamodb_table=devops-bootcamp-locks-bashayr"
 	ssh-keygen -t rsa -f ./ssh/id_rsa -q -N ""
