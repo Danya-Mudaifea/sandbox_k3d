@@ -40,8 +40,9 @@ spec:
   }
     stages {
         stage("init") {
-        container('kubectl') {
+       
             steps {
+                 container('kubectl') {
                 sh 'make init'
             }
         }
@@ -59,15 +60,17 @@ spec:
         }
         }
        stage("plan") {
-        container('kubectl') {
+        
           steps {
+               container('kubectl') {
               sh 'make plan'
           }
         }
       }
       stage("apply") {
-          container('kubectl') {
+         
             steps {
+                 container('kubectl') {
                 sh 'make apply'
             }
           }
