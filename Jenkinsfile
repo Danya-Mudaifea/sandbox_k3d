@@ -76,6 +76,19 @@ spec:
             }
           }
       }
+      stage("test") {
+         
+            steps {
+                 container('kubectl') {
+                sh 'make test'
+            }
+          }
+      }
+      post {
+        success {
+            build quietPeriod: 0, wait: false, job: 'test'  
+    }
+  }
 
     }
 }
