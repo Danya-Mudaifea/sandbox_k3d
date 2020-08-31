@@ -40,12 +40,12 @@ test: copy connect
 
 copy:
 	echo "hello 'terraform output -json | jq '.sandbox_ip.value' | xargs'"
-	ssh-keygen -R hostname
 	scp -i ssh/id_rsa ssh/id_rsa ubuntu@$$(terraform output -json | jq '.sandbox_ip.value' | xargs):~/
+	
 	ssh -tt -i ssh/id_rsa ubuntu@$$(terraform output -json | jq '.sandbox_ip.value' | xargs) chmod 400 /home/ubuntu/id_rsa
 
 connect:
-	echo yes | ssh -tt -i ssh/id_rsa ubuntu@$$(terraform output -json | jq '.sandbox_ip.value' | xargs)
+	ssh -tt -i -o StrictHostKeyChecking=no ssh/id_rsa ubuntu@$$(terraform output -json | jq '.sandbox_ip.value' | xargs) uptime
 
 init:
 	rm -rf .terraform ssh

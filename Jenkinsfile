@@ -82,7 +82,7 @@ make init
             steps {
                  container('kubectl') {
                      sh "ls"
-                sh 'make test'
+                sh 'make connect'
             }
           }
       }
