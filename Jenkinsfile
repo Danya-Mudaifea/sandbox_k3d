@@ -77,11 +77,11 @@ make init
             }
           }
       }
-      stage("connect") {
+      stage("test") {
          
             steps {
                  container('kubectl') {
-                sh 'make connect'
+                sh 'make test'
             }
           }
       }
