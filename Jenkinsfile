@@ -42,6 +42,7 @@ spec:
 
         stage("workspace") {
         steps {
+            container('kubectl') {
             sh """
             terraform workspace list | grep sandbox-k3d
             if [[ \$? -ne 0 ]]; then
@@ -50,6 +51,7 @@ spec:
             terraform workspace select sandbox-k3d
             make init
             """
+            }
         }
         }
        stage("plan") {
