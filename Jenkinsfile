@@ -52,12 +52,12 @@ spec:
         steps {
             container('kubectl') {
             sh """
-            terraform workspace new sandbox-k3d
-            
-            terraform workspace select sandbox-k3d
-            
-            """
-            }
+terraform workspace select sandbox-k3d
+if [[ \$? -ne 0 ]]; then
+  terraform workspace new sandbox-k3d
+fi
+make init
+"""
         }
         }
        stage("plan") {
