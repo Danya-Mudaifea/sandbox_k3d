@@ -40,6 +40,14 @@ spec:
   }
     stages {
 
+         stage("init") {
+        
+          steps {
+               container('kubectl') {
+              sh 'make init'
+          }
+        }
+      }
         stage("workspace") {
         steps {
             container('kubectl') {
