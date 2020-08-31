@@ -39,13 +39,11 @@ down:
 test: copy connect
 
 copy:
-	echo "hello 'terraform output -json | jq '.sandbox_ip.value' | xargs'"
 	scp -i ssh/id_rsa ssh/id_rsa ubuntu@$$(terraform output -json | jq '.sandbox_ip.value' | xargs):~/
-	
 	ssh -tt -i ssh/id_rsa ubuntu@$$(terraform output -json | jq '.sandbox_ip.value' | xargs) chmod 400 /home/ubuntu/id_rsa
 
 connect:
-	ssh -tt -i -o StrictHostKeyChecking=no ssh/id_rsa ubuntu@$$(terraform output -json | jq '.sandbox_ip.value' | xargs) uptime
+	echo yes | ssh -tt -i ssh/id_rsa ubuntu@$$(terraform output -json | jq '.sandbox_ip.value' | xargs)
 
 init:
 	rm -rf .terraform ssh
