@@ -2,20 +2,20 @@ provider "random" {}
 
 module "tags_network" {
   source      = "git::https://github.com/cloudposse/terraform-null-label.git"
-  namespace   = "delta"
+  namespace   = "deltasandbox"
   environment = "dev"
   name        = "devops-bootcamp"
   delimiter   = "_"
 
   tags = {
-    owner = "delta"
+    owner = "deltasandbox"
     type  = "network"
   }
 }
 
 module "tags_sandbox" {
   source      = "git::https://github.com/cloudposse/terraform-null-label.git"
-  namespace   = "delta"
+  namespace   = "deltasandbox"
   environment = "dev"
   name        = "sandbox-devops-bootcamp"
   delimiter   = "_"
