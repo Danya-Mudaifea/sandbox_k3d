@@ -57,6 +57,7 @@ spec:
             make init
             """
         }
+        }
        stage("plan") {
         container('kubectl') {
           steps {
