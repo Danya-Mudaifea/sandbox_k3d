@@ -39,14 +39,7 @@ spec:
     PROJECT_NAME = 'webapp'
   }
     stages {
-        stage("init") {
-       
-            steps {
-                 container('kubectl') {
-                sh 'make init'
-            }
-        }
-        }
+
         stage("workspace") {
         steps {
             sh """
