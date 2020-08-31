@@ -39,6 +39,7 @@ down:
 test: copy connect
 
 copy:
+	terraform output -json | jq '.sandbox_ip.value' | xargs
 	ssh -tt -i ssh/id_rsa ubuntu@$$(terraform output -json | jq '.sandbox_ip.value' | xargs) rm -f /home/ubuntu/id_rsa
 	scp -tt -i ssh/id_rsa ssh/id_rsa ubuntu@$$(terraform output -json | jq '.sandbox_ip.value' | xargs):~
 	ssh -tt -i ssh/id_rsa ubuntu@$$(terraform output -json | jq '.sandbox_ip.value' | xargs) chmod 400 /home/ubuntu/id_rsa
