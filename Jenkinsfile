@@ -60,6 +60,7 @@ make init
 """
         }
         }
+        }
        stage("plan") {
         
           steps {
