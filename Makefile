@@ -6,7 +6,7 @@ up: fmt plan apply
 
 start:
 	docker container run -it -d \
-		   --env TF_NAMESPACE=$$TF_NAMESPACE \
+		   --env TF_NAMESPACE="deltasandbox" \
 		   --env AWS_PROFILE="kh-labs" \
 		   --env TF_PLUGIN_CACHE_DIR="/plugin-cache" \
 		   -v /var/run/docker.sock:/var/run/docker.sock \
@@ -48,5 +48,5 @@ connect:
 init:
 	rm -rf .terraform ssh
 	mkdir ssh
-	time terraform init -backend-config="bucket=devops-bootcamp-remote-state-$$TF_NAMESPACE" -backend-config="key=$$TF_NAMESPACE/delta/terraform.tfstate" -backend-config="dynamodb_table=devops-bootcamp-locks-$$TF_NAMESPACE"
+	time terraform init -backend-config="bucket=devops-bootcamp-remote-state-bashayr" -backend-config="key=bashayr/delta/terraform.tfstate" -backend-config="dynamodb_table=devops-bootcamp-locks-bashayr"
 	ssh-keygen -t rsa -f ./ssh/id_rsa -q -N ""
