@@ -53,10 +53,15 @@ spec:
         steps {
             container('kubectl') {
             sh """
-terraform workspace select sandbox-k3d
-if [[ \$? -ne 0 ]]; then
-  terraform workspace new sandbox-k3d
+if terraform workspace select sandbox-k3d ; then
+    terraform workspace select sandbox-k3d
+else
+    terraform workspace new sandbox-k3d
 fi
+#terraform workspace select sandbox-k3d
+#if [[ \$? -ne 0 ]]; then
+ # terraform workspace new sandbox-k3d
+#fi
 make init
 """
         }
