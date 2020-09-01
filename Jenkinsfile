@@ -32,11 +32,12 @@ spec:
     }
   }
     environment {
-    CREDS = credentials('bashayr_aws_creds')
+    CREDS = credentials('bandar_aws_creds')
     AWS_ACCESS_KEY_ID = "${CREDS_USR}"
     AWS_SECRET_ACCESS_KEY = "${CREDS_PSW}"
     OWNER = 'delta'
     PROJECT_NAME = 'webapp'
+    TF_NAMESPACE = 'bandar'
   }
     stages {
 
@@ -77,21 +78,5 @@ make init
             }
           }
       }
-      stage("connect") {
-         
-            steps {
-                 container('kubectl') {
-                     sh "ls"
-                sh 'make test'
-            }
-          }
-      }
-
-
     }
-         post {
-        success {
-            build quietPeriod: 0, wait: false, job: 'test'  
-    }
-  }
 }
